@@ -5,7 +5,7 @@ const fs = require("fs");
 //Create uploads directory if it doesn't exits;
 const uploadDir = "uploads";
 if (!fs.existsSync(uploadDir)) {
-  fs.mkdir(uploadDir, { recursive: true });
+  fs.mkdirSync(uploadDir, { recursive: true });
 }
 
 //Set up storage engine
@@ -42,6 +42,5 @@ const upload = multer({
     checkFileType(file, cb);
   },
 }).single("coverImage"); //Filed name for the upload file
-
 
 module.exports = upload;

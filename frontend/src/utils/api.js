@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Backend is running on port 8000
 const API = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "https://ebook-creator-pgxl.onrender.com/api",
 });
 
 // Automatically inject JWT token into requests
