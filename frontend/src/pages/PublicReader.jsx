@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
+import API from "../utils/api";
 import { BookOpen, FileText, ChevronRight, Loader2, AlertCircle } from "lucide-react";
 
 const PublicReader = () => {
@@ -17,7 +17,7 @@ const PublicReader = () => {
         setLoading(true);
         setError("");
         // Backend public endpoint
-        const { data } = await axios.get(`http://localhost:8000/api/books/public/${id}`);
+        const { data } = await API.get(`/books/public/${id}`);
         setBook(data);
         if (data.chapters && data.chapters.length > 0) {
           setActiveChapterIndex(0);

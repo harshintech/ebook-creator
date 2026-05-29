@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import API from "../utils/api";
+import API, { getCoverUrl } from "../utils/api";
 import {
   ArrowLeft,
   Plus,
@@ -37,18 +37,7 @@ const BookEditor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Helper to normalize cover image paths from backend
-  const getCoverUrl = (path) => {
-    if (!path) return null;
-    let cleanPath = path.replace(/\\/g, "/");
-    if (cleanPath.startsWith("/")) {
-      cleanPath = cleanPath.substring(1);
-    }
-    if (!cleanPath.startsWith("backend/")) {
-      cleanPath = "backend/" + cleanPath;
-    }
-    return `http://localhost:8000/${cleanPath}`;
-  };
+
 
   // Core book data
   const [book, setBook] = useState(null);

@@ -1,21 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BookOpen, FileText, Download, Trash2, Share2, Edit2 } from "lucide-react";
+import { getCoverUrl } from "../utils/api";
 
 const BookCard = ({ book, onDelete, onExportPDF, onExportDoc }) => {
-  // Helper to normalize cover image paths from backend
-  const getCoverUrl = (path) => {
-    if (!path) return null;
-    let cleanPath = path.replace(/\\/g, "/");
-    if (cleanPath.startsWith("/")) {
-      cleanPath = cleanPath.substring(1);
-    }
-    if (!cleanPath.startsWith("backend/")) {
-      cleanPath = "backend/" + cleanPath;
-    }
-    return `http://localhost:8000/${cleanPath}`;
-  };
-
   const coverUrl = getCoverUrl(book.coverImage);
 
   const handleShareLink = (e) => {

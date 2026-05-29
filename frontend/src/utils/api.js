@@ -22,4 +22,21 @@ API.interceptors.request.use(
   }
 );
 
+export const BACKEND_URL = API.defaults.baseURL.replace(/\/api$/, "");
+
+export const getCoverUrl = (path) => {
+  if (!path) return null;
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+  let cleanPath = path.replace(/\\/g, "/");
+  if (cleanPath.startsWith("/")) {
+    cleanPath = cleanPath.substring(1);
+  }
+  if (!cleanPath.startsWith("backend/")) {
+    cleanPath = "backend/" + cleanPath;
+  }
+  return `${BACKEND_URL}/${cleanPath}`;
+};
+
 export default API;
